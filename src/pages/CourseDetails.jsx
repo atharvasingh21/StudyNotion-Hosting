@@ -101,6 +101,8 @@ function CourseDetails() {
     createdAt,
   } = response.data?.courseDetails
 
+  console.log(response);
+
   const handleBuyCourse = () => {
     if (token) {
       BuyCourse(token, [courseId], user, navigate, dispatch)
@@ -155,9 +157,9 @@ function CourseDetails() {
                 <span>{`${studentsEnroled.length} students enrolled`}</span>
               </div>
               <div>
-                <p className="">
-                  Created By {`${instructor.firstName} ${instructor.lastName}`}
-                </p>
+                {/* <p className="">
+                  Created By {`${instructor?.firstName} ${instructor?.lastName}`}
+                </p> */}
               </div>
               <div className="flex flex-wrap gap-5 text-lg">
                 <p className="flex items-center gap-2">
@@ -243,14 +245,14 @@ function CourseDetails() {
               <div className="flex items-center gap-4 py-4">
                 <img
                   src={
-                    instructor.image
-                      ? instructor.image
-                      : `https://api.dicebear.com/5.x/initials/svg?seed=${instructor.firstName} ${instructor.lastName}`
+                    instructor?.image
+                      ? instructor?.image
+                      : `https://api.dicebear.com/5.x/initials/svg?seed=${instructor?.firstName} ${instructor?.lastName}`
                   }
                   alt="Author"
                   className="h-14 w-14 rounded-full object-cover"
                 />
-                <p className="text-lg">{`${instructor.firstName} ${instructor.lastName}`}</p>
+                <p className="text-lg">{`${instructor?.firstName} ${instructor?.lastName}`}</p>
               </div>
               <p className="text-richblack-50">
                 {instructor?.additionalDetails?.about}
