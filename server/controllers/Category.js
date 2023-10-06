@@ -45,6 +45,7 @@ exports.showAllCategories = async (req, res) => {
 
 exports.categoryPageDetails = async (req, res) => {
   try {
+    console.log("Here I am")
     const { categoryId } = req.body
 
     // Get courses for the specified category
@@ -77,7 +78,12 @@ exports.categoryPageDetails = async (req, res) => {
     const categoriesExceptSelected = await Category.find({
       _id: { $ne: categoryId },
     })
-    let differentCategory = await Category.findOne(
+
+    let differentCategory = null;
+    console.log(categoriesExceptSelected)
+    if(categoriesExceptSelected.length > 0 )
+    {
+        differentCategory = await Category.findOne(
       categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
         ._id
     )
@@ -86,6 +92,7 @@ exports.categoryPageDetails = async (req, res) => {
         match: { status: "Published" },
       })
       .exec()
+    }
     console.log()
     // Get top-selling courses across all categories
     const allCategories = await Category.find()

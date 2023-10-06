@@ -29,8 +29,8 @@ function Course_Slider({ Courses }) {
           }}
           className="max-h-[30rem]"
         >
-          {Courses?.map((course, i) => (
-            <SwiperSlide key={i}>
+          {Courses?.map((course, index) => (
+            <SwiperSlide key={index}>
               <Course_Card course={course} Height={"h-[250px]"} />
             </SwiperSlide>
           ))}
