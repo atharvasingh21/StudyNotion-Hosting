@@ -44,6 +44,7 @@ exports.capturePayment = async (req, res) => {
       // Add the price of the course to the total amount
       total_amount += course.price
     } catch (error) {
+        console.log("Error here");
       console.log(error)
       return res.status(500).json({ success: false, message: error.message })
     }
@@ -57,7 +58,10 @@ exports.capturePayment = async (req, res) => {
 
   try {
     // Initiate the payment using Razorpay
+
     const paymentResponse = await instance.orders.create(options)
+
+    console.log("Here I am");
     console.log(paymentResponse)
     res.json({
       success: true,
